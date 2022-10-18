@@ -12,6 +12,7 @@ class UserRotes{
         this.router.get('/getReport', appCtrl.getReport);
         this.router.post('/cliente', appCtrl.createClient);
         this.router.post('/agent', appCtrl.createAgent);
+        this.router.post('/vehiculo', appCtrl.createVehicle);
         this.router.post('/consorsio', appCtrl.createConsesionario);
     }
 }
