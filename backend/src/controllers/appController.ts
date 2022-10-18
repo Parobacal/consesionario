@@ -21,8 +21,23 @@ class AppController{
             pool.getConnection(function(err, conn){
                 conn.query(query, [body.nombre, body.correo, body.direccion, body.dpi, body.edad, body.genero], function(err2, results:any, field){
                     console.log(results);
+                    res.json(results[0]);
                 });
-                conn.query('SELECT @Salida as cuenta', function(err2, results:any, field){
+            });
+        }catch (err){
+            console.error(err)
+        }
+    }
+
+    public async createVehicle(req:Request, res:Response){
+        var query = "INSERT INTO Vehiculo (idSucursal, Modelo, Tipo, Anio, Color, Transmision, Precio) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+        var body = req.body
+        console.log(body)
+
+        try{
+            pool.getConnection(function(err, conn){
+                conn.query(query, [body.idsucursal, body.modelo, body.tipo, body.anio, body.color, body.transmision, body.precio], function(err2, results:any, field){
                     console.log(results);
                     res.json(results[0]);
                 });
