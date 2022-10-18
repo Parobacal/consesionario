@@ -1,6 +1,6 @@
-CREATE DATABASE consesionario;
+CREATE DATABASE consesionariodb;
 
-USE consesionario;
+USE consesionariodb;
 
 CREATE TABLE IF NOT EXISTS Consesionario(
     idConsesionario INT NOT NULL AUTO_INCREMENT,
@@ -24,8 +24,9 @@ CREATE TABLE IF NOT EXISTS Agente(
     idAgente INT NOT NULL AUTO_INCREMENT,
     idSucursal INT NOT NULL,
     Nombre VARCHAR(50) NOT NULL,
+    Correo VARCHAR(50) NOT NULL,
     Direccion VARCHAR(120) NOT NULL,
-    DPI INT UNIQUE NOT NULL,
+    DPI INT UNIQUE NOT NULL, 
     Edad INT NOT NULL,
     Genero VARCHAR(1) NOT NULL,
 
@@ -51,12 +52,13 @@ CREATE TABLE IF NOT EXISTS Vehiculo(
 CREATE TABLE IF NOT EXISTS Cliente(
     idCliente INT NOT NULL AUTO_INCREMENT,
     Nombre VARCHAR(50) NOT NULL,
+    Correo VARCHAR(50) NOT NULL,
     Direccion VARCHAR(120) NOT NULL,
     DPI INT UNIQUE NOT NULL,
     Edad INT NOT NULL,
     Genero VARCHAR(1) NOT NULL,
 
-    PRIMARY KEY (idConsesionario)
+    PRIMARY KEY (idCliente)
 );
 
 CREATE TABLE IF NOT EXISTS Cotizacion(
@@ -67,7 +69,7 @@ CREATE TABLE IF NOT EXISTS Cotizacion(
     Fecha DATE NOT NULL,
     Descripcion VARCHAR(100),
 
-    PRIMARY KEY (Cotizacion),
+    PRIMARY KEY (idCotizacion),
     FOREIGN KEY (idAgente) REFERENCES Agente(idAgente),
     FOREIGN KEY (idCliente) REFERENCES Cliente(idCliente),
     FOREIGN KEY (idVehiculo) REFERENCES Vehiculo(idVehiculo)
